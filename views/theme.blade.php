@@ -36,6 +36,7 @@
                                 {{-- loop 1--}}
                                 @foreach($mainMenu->getTree()->getTreeNodes() as $menuItem)
                                 @can('visible', [$menuItem, $mainMenu])
+                                @else // 메뉴가 제대로 표시되지 않아서 임시로 else 를 사용함
 
                                 <!--[D] 메뉴 선택 시 li.on -->
                                 <li class="@if($menuItem->isSelected())on @endif @if($menuItem->hasChild()) @endif">
@@ -107,6 +108,7 @@
                     @if($subMenu)
                         @foreach($subMenu->getTree()->getTreeNodes() as $menuItem)
                         @can('visible', [$menuItem, $subMenu])
+                        @else
                             <!--[D] 메뉴 선택 시 li.on -->
                             <li>
                                 <a href="{{ url($menuItem->url) }}" class="white-text">{{ xe_trans($menuItem->title) }}</a>
